@@ -1,0 +1,75 @@
+@{
+    ViewData["Title"] = "Productos";
+}
+
+<div class="d-flex justify-content-between align-items-center mb-3">
+    <h2 class="mb-0">Productos</h2>
+    <button id="btnNuevoProducto" class="btn btn-primary">+ Nuevo Producto</button>
+</div>
+
+<table class="table table-bordered table-striped bg-white" id="tablaProductos">
+    <thead class="table-dark">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Descripción</th>
+            <th>Precio</th>
+            <th>Stock</th>
+            <th>Categoría</th>
+            <th>Activo</th>
+            <th style="width:140px;">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- se llena con JS -->
+    </tbody>
+</table>
+
+<div class="modal fade" id="productoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalTitulo">Nuevo Producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        @await Html.PartialAsync("_ProductoForm")
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-primary" id="btnGuardarProducto">Guardar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="confirmDeleteProductoModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title text-danger">Eliminar producto</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body">
+        <p>¿Seguro que deseas eliminar este producto?</p>
+        <input type="hidden" id="deleteProductoId" />
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+        <button class="btn btn-danger" id="btnEliminarProductoConfirmado">Eliminar</button>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/productos.js"></script>
+}
